@@ -45,7 +45,7 @@ public class TelaLogin extends javax.swing.JFrame {
     private void initComponents() {
 
         lblLogin = new javax.swing.JLabel();
-        txtLogin = new javax.swing.JTextField();
+        txtUsuario = new javax.swing.JTextField();
         lblSenha = new javax.swing.JLabel();
         txtSenha = new javax.swing.JPasswordField();
         btnEntrar = new javax.swing.JButton();
@@ -61,7 +61,12 @@ public class TelaLogin extends javax.swing.JFrame {
         lblLogin.setForeground(new java.awt.Color(255, 255, 255));
         lblLogin.setText("Usuário");
 
-        txtLogin.setToolTipText("Digite seu usuário");
+        txtUsuario.setToolTipText("Digite seu usuário");
+        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsuarioActionPerformed(evt);
+            }
+        });
 
         lblSenha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblSenha.setForeground(new java.awt.Color(255, 255, 255));
@@ -72,7 +77,7 @@ public class TelaLogin extends javax.swing.JFrame {
         btnEntrar.setBackground(new java.awt.Color(0, 102, 255));
         btnEntrar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnEntrar.setForeground(new java.awt.Color(255, 255, 255));
-        btnEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/login.png"))); // NOI18N
+        btnEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/login.png"))); // NOI18N
         btnEntrar.setText("Entrar");
         btnEntrar.setToolTipText("Entrar no jogo");
         btnEntrar.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
@@ -83,7 +88,7 @@ public class TelaLogin extends javax.swing.JFrame {
         });
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/logounivates.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logounivates.png"))); // NOI18N
 
         lblCapsLook.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblCapsLook.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -94,7 +99,7 @@ public class TelaLogin extends javax.swing.JFrame {
         });
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/logo.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logo.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -110,13 +115,13 @@ public class TelaLogin extends javax.swing.JFrame {
                         .addGap(131, 131, 131)
                         .addComponent(btnEntrar))
                     .addComponent(lblSenha)
-                    .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblLogin)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblCapsLook, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(293, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,7 +129,7 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addGap(100, 100, 100)
                 .addComponent(lblLogin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblSenha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -146,7 +151,15 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
-        String senha = new String(txtSenha.getPassword());
+        
+        LoginController login = new LoginController();
+        Usuario user = login.Login(txtUsuario.getText().trim(), txtSenha.getText().toString().trim());
+        if(user == null){
+            System.out.println("Usuário não existe");
+        }
+                
+
+        /*String senha = new String(txtSenha.getPassword());
         String login = txtLogin.getText();
         
           if ((login.equals("")) && (senha.equals(""))) {
@@ -166,13 +179,17 @@ public class TelaLogin extends javax.swing.JFrame {
             }else {
             CaixaDeDialogo.obterinstancia().exibirMensagem("Usuário ou Senha incorretos, verifique!", "Atenção", 'a');
             return;
-            }
+            }*/
                   
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void lblCapsLookKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lblCapsLookKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_lblCapsLookKeyPressed
+
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -246,7 +263,7 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel lblCapsLook;
     private javax.swing.JLabel lblLogin;
     private javax.swing.JLabel lblSenha;
-    private javax.swing.JTextField txtLogin;
     private javax.swing.JPasswordField txtSenha;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

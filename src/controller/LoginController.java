@@ -11,39 +11,50 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import models.Usuario;
 
 /**
  *
  * @author Janquiel Kappler
  */
 public class LoginController {
-     public static Connection conexao = new ConnectionFactory().getConnection();
-     public static String TABELA = "usuarios";
-     public static PreparedStatement ps;
-     public static ResultSet rs;
 
-      public static boolean buscarUsuario(String login, String senha){
-          boolean autenticado = false;
-          
-          try {
-            ConnectionFactory.abreConexao();
-            ps = conexao.prepareStatement("SELECT login_usuario, senha_usuario FROM " + TABELA + " WHERE login_usuario = ? AND senha_usuario = ?");
-            ps.setString(1, login);
-            ps.setString(2, senha);
+      public Usuario Login(String usuario, String senha){
+        //INÍCIO CONEXÃO COM O BANCO DE DADOS
+        System.out.println("Vai abrir a conexão com o banco de dados");
+        ConnectionFactory.abreConexao();
+        
+        Usuario user = null;
+        
+        ResultSet rs = null;
+
+        StringBuilder comandoSQL = new StringBuilder();
+        comandoSQL.append(" SELECT login_usuario, nome");
+        comandoSQL.append(" FROM usuarios");
+        comandoSQL.append(" WHERE login_usuario = '"+ usuario +"'");
+        comandoSQL.append(" AND senha_usuario = '"+ senha +"'");
+        
+        try {
+            System.out.println("Vai Executar Conexão em buscar area");
+            rs = ConnectionFactory.stmt.executeQuery(comandoSQL.toString());
+            System.out.println("Executou Conexão em buscar area");
             
-            rs = ps.executeQuery();
-            //Testar se tem alguma registro no banco de dados
-            if (rs.next()) {
-                //login.equals(rs.getString("login"));
-                //senha.equals(rs.getString("senha"));
-                autenticado = true;
+            if (rs.next() == true) {
+                user = new Usuario();
+                user.setLogin(rs.getString("login_usuario"));
+                user.setNome(rs.getString("nome"));
             }
-            return autenticado;
-            } catch (SQLException e) {
-               System.out.println("Erro ao fazer a consulta no banco de dados" + e.getMessage());
-            }
-            ConnectionFactory.closeConnection(conexao, ps, rs);
-            return false;
+        } catch (SQLException ex) {
+            System.out.println("ERRO de SQL: " + ex.getMessage().toString());
+            return user;
+        }finally{
+            Connection con = ConnectionFactory.getConnection();
+            System.out.println("Vai fechar a conexão com o banco de dados");
+            ConnectionFactory.closeConnection(con);
         }
+        
+        return user;
+        
+    }
     
 }

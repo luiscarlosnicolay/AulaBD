@@ -39,7 +39,7 @@
                       <Component id="btnEntrar" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="lblSenha" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtLogin" alignment="0" min="-2" pref="236" max="-2" attributes="0"/>
+                  <Component id="txtUsuario" alignment="0" min="-2" pref="236" max="-2" attributes="0"/>
                   <Component id="lblLogin" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="txtSenha" min="-2" pref="236" max="-2" attributes="0"/>
@@ -47,7 +47,7 @@
                       <Component id="lblCapsLook" min="-2" pref="137" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="293" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -57,7 +57,7 @@
               <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
               <Component id="lblLogin" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="txtLogin" min="-2" pref="30" max="-2" attributes="0"/>
+              <Component id="txtUsuario" min="-2" pref="30" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lblSenha" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -88,10 +88,13 @@
         <Property name="text" type="java.lang.String" value="Usu&#xe1;rio"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtLogin">
+    <Component class="javax.swing.JTextField" name="txtUsuario">
       <Properties>
         <Property name="toolTipText" type="java.lang.String" value="Digite seu usu&#xe1;rio"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtUsuarioActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblSenha">
       <Properties>
@@ -121,7 +124,7 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/icones/login.png"/>
+          <Image iconType="3" name="/icons/login.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Entrar"/>
         <Property name="toolTipText" type="java.lang.String" value="Entrar no jogo"/>
@@ -135,7 +138,7 @@
       <Properties>
         <Property name="horizontalAlignment" type="int" value="4"/>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/icones/logounivates.png"/>
+          <Image iconType="3" name="/icons/logounivates.png"/>
         </Property>
       </Properties>
     </Component>
@@ -154,7 +157,7 @@
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/icones/logo.png"/>
+          <Image iconType="3" name="/icons/logo.png"/>
         </Property>
       </Properties>
     </Component>
