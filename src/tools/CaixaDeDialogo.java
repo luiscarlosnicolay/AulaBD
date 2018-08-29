@@ -7,7 +7,7 @@
  * and open the template in the editor.
  */
 
-package ferramentas;
+package tools;
 import javax.swing.JOptionPane;
 /**
  *

@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controle;
+package controller;
 
 import connection.ConnectionFactory;
-import ferramentas.CaixaDeDialogo;
+import tools.CaixaDeDialogo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,7 +16,7 @@ import java.sql.SQLException;
  *
  * @author Janquiel Kappler
  */
-public class UsuarioDao {
+public class LoginController {
      public static Connection conexao = new ConnectionFactory().getConnection();
      public static String TABELA = "usuarios";
      public static PreparedStatement ps;

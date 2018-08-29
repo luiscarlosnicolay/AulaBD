@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package univates_bd;
+package views;
 
 import connection.ConnectionFactory;
 import static connection.ConnectionFactory.con;
-import controle.UsuarioDao;
-import ferramentas.CaixaDeDialogo;
+import controller.LoginController;
+import tools.CaixaDeDialogo;
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
@@ -18,7 +18,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import modelo.Usuario;
+import models.Usuario;
 
 /**
  *
@@ -154,7 +154,7 @@ public class TelaLogin extends javax.swing.JFrame {
              return;   
            }
         
-            boolean resposta = UsuarioDao.buscarUsuario(login,senha); 
+            boolean resposta = LoginController.buscarUsuario(login,senha); 
             System.out.println(resposta);
         
             if (resposta == true){
