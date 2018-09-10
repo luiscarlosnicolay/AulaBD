@@ -15,7 +15,8 @@ import java.awt.Component;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import sun.swing.table.DefaultTableCellHeaderRenderer;
+//import sun.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
@@ -37,8 +38,8 @@ public class AlunoController {
         Vector<String> cabecalhos = new Vector<String>();
         Vector dadosTabela = new Vector();
         cabecalhos.add("Matricula");
-        cabecalhos.add("Nome");
         cabecalhos.add("Curso");
+        cabecalhos.add("Nome");
         
         ResultSet result = null;
         
@@ -92,7 +93,7 @@ public class AlunoController {
             }
         }
         
-        jTableAlunos.setDefaultRenderer(Object.class, new DefaultTableCellHeaderRenderer() {
+        jTableAlunos.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             
             @Override
             public Component getTableCellRendererComponent (JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
