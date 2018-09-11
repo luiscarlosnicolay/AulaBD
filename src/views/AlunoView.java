@@ -6,12 +6,16 @@
 package views;
 
 import controller.AlunoController;
+import java.sql.SQLException;
+import tools.Combos;
 
 /**
  *
  * @author Janquiel Kappler
  */
 public class AlunoView extends javax.swing.JFrame {
+    
+    Combos objComboCurso;
 
     /**
      * Creates new form AlunoView
@@ -22,8 +26,17 @@ public class AlunoView extends javax.swing.JFrame {
         //Carregar os cursos existentes
         
         //Carregar os alunos existentes
+        try{
+            
+        
         AlunoController alunoCon = new AlunoController(null, jTableAlunos);
         alunoCon.PreencheAlunos();
+        
+        objComboCurso = new Combos(jComboBoxCurso);
+        objComboCurso.PreencheCombo("SELECT cod_curso, nom_curso FROM cursos ORDER BY nom_curso");
+    }catch(SQLException ex){
+            System.out.println("Erro ao atualizar os Dados");
+    }
         
     }
 
@@ -49,7 +62,7 @@ public class AlunoView extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableAlunos = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Nome");
 
