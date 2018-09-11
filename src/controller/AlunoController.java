@@ -29,6 +29,7 @@ public class AlunoController {
     
     public AlunoController(Aluno objAluno, JTable jTableAlunos) {
         this.objAluno = objAluno;
+        this.jTableAlunos = jTableAlunos;
     }
     
     public void PreencheAlunos() {
@@ -46,10 +47,10 @@ public class AlunoController {
         try{
             
             String SQL = "";
-            SQL = " SELECT mat_aluno, c.nom_curso, nom_aluno ";
+            SQL = " SELECT a.mat_alu, c.nom_curso, a.nom_alu ";
             SQL += " FROM alunos a, cursos c ";
-            SQL += " WHERE a.cod_cruso = c.cod_curso ";
-            SQL += " ORDER BY nom_aluno ";
+            SQL += " WHERE a.cod_curso = c.cod_curso ";
+            SQL += " ORDER BY nom_alu ";
             
             result = ConnectionFactory.stmt.executeQuery(SQL);
             
@@ -57,6 +58,7 @@ public class AlunoController {
                 Vector<Object> linha = new Vector<Object>();
                 linha.add(result.getInt(1));
                 linha.add(result.getString(2));
+                linha.add(result.getString(3));
                 dadosTabela.add(linha);
             }
         } catch (SQLException e) {
@@ -70,7 +72,7 @@ public class AlunoController {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
-            //Permite seleção de apenas uma linha da tabela
+            //Não permite edição no jTable
         });
         
         //Permite seleção de apenas uma linha da tabela
