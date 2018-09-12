@@ -5,61 +5,84 @@
  */
 package controller;
 
-import java.sql.ResultSet;
-import java.util.Vector;
-import javax.swing.JTable;
-import models.Aluno;
 import connection.ConnectionFactory;
 import java.awt.Color;
 import java.awt.Component;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Vector;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-//import sun.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableCellRenderer;
 import models.Usuario;
 
 /**
  *
- * @author Janquiel Kappler
+ * @author luis_
  */
-public class AlunoController {
+public class UsuarioController {
     
-    Aluno objAluno;  
-    JTable jTableAlunos = null;
+    Usuario objUsuario;
+    JTable jTableListaUsuarios = null;
     
-    public AlunoController(Aluno objAluno, JTable jTableAlunos) {
-        this.objAluno = objAluno;
-        this.jTableAlunos = jTableAlunos;
+    public UsuarioController(Usuario objUsuario, JTable jTableListaUsuarios) {
+        this.objUsuario = objUsuario;
+        this.jTableListaUsuarios = jTableListaUsuarios;
     }
     
-    public void PreencheAlunos() {
+    public boolean incluir(Usuario objUsuario){      
+        
+        
+        ConnectionFactory.abreConexao();
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        
+        try {
+            stmt = con.prepareStatement("INSERT INTO usuarios (login_usuario, senha_usuario, nome)VALUES(?,?,?)");
+            stmt.setString(1, objUsuario.getLogin());
+            stmt.setString(2, objUsuario.getSenha());
+            stmt.setString(3, objUsuario.getNome());
+            
+            stmt.executeUpdate();
+            
+            return true;
+            
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+        
+    }
+    
+    public void PreencheUsuarios() {
         
         ConnectionFactory.abreConexao();
         
         Vector<String> cabecalhos = new Vector<String>();
         Vector dadosTabela = new Vector();
-        cabecalhos.add("Matricula");
-        cabecalhos.add("Curso");
         cabecalhos.add("Nome");
+        cabecalhos.add("Login");
+        cabecalhos.add("Senha");
         
         ResultSet result = null;
         
         try{
             
             String SQL = "";
-            SQL = " SELECT a.mat_alu, c.nom_curso, a.nom_alu ";
-            SQL += " FROM alunos a, cursos c ";
-            SQL += " WHERE a.cod_curso = c.cod_curso ";
-            SQL += " ORDER BY nom_alu ";
+            SQL = " SELECT  u.nome, u.login_usuario, u.senha_usuario";
+            SQL += " FROM usuarios u ";
+            SQL += " ORDER BY u.nome ";
             
             result = ConnectionFactory.stmt.executeQuery(SQL);
             
             while (result.next()) {
                 Vector<Object> linha = new Vector<Object>();
-                linha.add(result.getInt(1));
+                linha.add(result.getString(1));
                 linha.add(result.getString(2));
                 linha.add(result.getString(3));
                 dadosTabela.add(linha);
@@ -69,7 +92,7 @@ public class AlunoController {
             System.out.println(e);
         }
         
-        jTableAlunos.setModel(new DefaultTableModel(dadosTabela, cabecalhos) {
+        jTableListaUsuarios.setModel(new DefaultTableModel(dadosTabela, cabecalhos) {
             
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -79,12 +102,12 @@ public class AlunoController {
         });
         
         //Permite seleção de apenas uma linha da tabela
-        jTableAlunos.setSelectionMode(0);
+        jTableListaUsuarios.setSelectionMode(0);
         
         //Redimensiona as colunas de uma tabela
         TableColumn column = null;
         for (int i = 0; i < 3; i++) {
-            column = jTableAlunos.getColumnModel().getColumn(i);
+            column = jTableListaUsuarios.getColumnModel().getColumn(i);
             switch (1) {
                 case 0:
                 column.setPreferredWidth(80);
@@ -98,7 +121,7 @@ public class AlunoController {
             }
         }
         
-        jTableAlunos.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+        jTableListaUsuarios.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             
             @Override
             public Component getTableCellRendererComponent (JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
@@ -111,6 +134,5 @@ public class AlunoController {
                 return this;
             }
         });
-        //return (true);
     }
 }

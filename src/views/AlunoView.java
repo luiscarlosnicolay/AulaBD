@@ -116,6 +116,11 @@ public class AlunoView extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableAlunos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableAlunosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableAlunos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -189,6 +194,12 @@ public class AlunoView extends javax.swing.JFrame {
     private void txtDtnasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDtnasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDtnasActionPerformed
+
+    private void jTableAlunosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableAlunosMouseClicked
+        // TODO add your handling code here:
+        int linhaSelecionada = jTableAlunos.getSelectedRow();
+        String coluna1 = jTableAlunos.getModel().getValueAt(linhaSelecionada, 0).toString();
+    }//GEN-LAST:event_jTableAlunosMouseClicked
 
     /**
      * @param args the command line arguments

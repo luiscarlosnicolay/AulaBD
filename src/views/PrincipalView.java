@@ -61,6 +61,11 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenu1.add(jMenuItemAlunos);
 
         jMenuItemProfessores.setText("Professores");
+        jMenuItemProfessores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemProfessoresActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItemProfessores);
 
         jMenuBar1.add(jMenu1);
@@ -98,6 +103,12 @@ public class PrincipalView extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_btnSairActionPerformed
+
+    private void jMenuItemProfessoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemProfessoresActionPerformed
+        // TODO add your handling code here:
+        ProfessoresView pv = new ProfessoresView();
+        pv.setVisible(true);
+    }//GEN-LAST:event_jMenuItemProfessoresActionPerformed
 
     /**
      * @param args the command line arguments
