@@ -197,8 +197,13 @@ public class AlunoView extends javax.swing.JFrame {
 
     private void jTableAlunosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableAlunosMouseClicked
         // TODO add your handling code here:
-        int linhaSelecionada = jTableAlunos.getSelectedRow();
-        String coluna1 = jTableAlunos.getModel().getValueAt(linhaSelecionada, 0).toString();
+        //pega a linha selecionada
+   int linhaSelecionada = jTableAlunos.getSelectedRow();
+   // Primeira coluna da linha
+   String coluna1 = jTableAlunos.getModel().getValueAt(linhaSelecionada, 0).toString();
+   //basta agora chamar o método buscar, passando o COLUNA1 como parâmetro de consulta
+   AlunoController alunoCon = new AlunoController(null, jTableAlunos);
+        alunoCon.buscar(coluna1);
     }//GEN-LAST:event_jTableAlunosMouseClicked
 
     /**

@@ -113,4 +113,46 @@ public class AlunoController {
         });
         //return (true);
     }
+    
+    public Aluno buscar(String id)
+    {
+        try {
+            ConnectionFactory.abreConexao();
+            ResultSet rs = null;
+
+            String SQL = "";
+            SQL = " SELECT a.mat_alu, c.nom_curso, a.nom_alu ";
+            SQL += " FROM alunos a, cursos c ";
+            SQL += " WHERE a.cod_curso = c.cod_curso " + id + "'";
+            //stm.executeQuery(SQL);
+
+            try{
+                System.out.println("Vai Executar Conexão em buscar visitante");
+                rs = ConnectionFactory.stmt.executeQuery(SQL);
+                System.out.println("Executou Conexão em buscar visitante");
+
+                objAluno= new Aluno();
+                
+                if(rs.next() == true)
+                {
+                    objAluno.setMat_aluno(rs.getInt(1));
+                    objAluno.setNom_aluno(rs.getString(2));
+                    objAluno.setEmail(rs.getString(3));
+                }
+            }
+
+            catch (SQLException ex )
+            {
+                System.out.println("ERRO de SQL: " + ex.getMessage().toString());
+                return null;
+            }
+
+        } catch (Exception e) {
+            System.out.println("ERRO: " + e.getMessage().toString());
+            return null;
+        }
+        
+        System.out.println ("Executou buscar visitante com sucesso");
+        return objAluno;
+    }
 }
