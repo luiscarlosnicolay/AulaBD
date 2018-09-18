@@ -17,6 +17,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import models.Aluno;
 import models.Usuario;
 
 /**
@@ -134,5 +135,48 @@ public class UsuarioController {
                 return this;
             }
         });
+    }
+    
+    public Usuario buscar(String id){
+        
+        try {
+            ConnectionFactory.abreConexao();
+            ResultSet rs = null;
+
+            String SQL = "";
+            SQL = " SELECT login_usuario, senha_usuario, nome";
+            SQL += " FROM usuarios";
+            SQL += " WHERE login_usuario = '" + id + "'";
+            //stm.executeQuery(SQL);
+
+            try{
+                System.out.println("Vai Executar Conexão em buscar visitante");
+                rs = ConnectionFactory.stmt.executeQuery(SQL);
+                System.out.println("Executou Conexão em buscar aluno");
+                
+               objUsuario = new Usuario();
+               
+                if(rs.next() == true)
+                {
+                    objUsuario.setLogin(rs.getString(1));
+                    objUsuario.setSenha(rs.getString(2));
+                    objUsuario.setNome(rs.getString(3));
+
+                }
+            }
+
+            catch (SQLException ex )
+            {
+                System.out.println("ERRO de SQL: " + ex.getMessage().toString());
+                return null;
+            }
+
+        } catch (Exception e) {
+            System.out.println("ERRO: " + e.getMessage().toString());
+            return null;
+        }
+        
+        System.out.println ("Executou buscar aluno com sucesso");
+        return objUsuario;
     }
 }
