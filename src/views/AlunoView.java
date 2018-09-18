@@ -17,6 +17,8 @@ import tools.Combos;
 public class AlunoView extends javax.swing.JFrame {
     
     Combos objComboCurso;
+    Aluno objAluno = new Aluno();
+    AlunoController alunoCon = new AlunoController(objAluno, null);
 
     /**
      * Creates new form AlunoView
@@ -130,27 +132,26 @@ public class AlunoView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(jComboBoxCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(txtDtnas, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel5)
+                    .addComponent(txtMatricula)
+                    .addComponent(txtNome)
+                    .addComponent(jComboBoxCurso, 0, 150, Short.MAX_VALUE)
+                    .addComponent(txtEmail)
+                    .addComponent(txtDtnas))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -169,7 +170,8 @@ public class AlunoView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtDtnas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtDtnas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -203,14 +205,14 @@ public class AlunoView extends javax.swing.JFrame {
    // Primeira coluna da linha
    String coluna1 = jTableAlunos.getModel().getValueAt(linhaSelecionada, 0).toString();
    //basta agora chamar o método buscar, passando o COLUNA1 como parâmetro de consulta
-         Aluno objAluno = new Aluno();
-         AlunoController alunoCon = new AlunoController(objAluno, null);
-         objAluno = alunoCon.buscar(coluna1);
+        objAluno = new Aluno();
+         
+        objAluno = alunoCon.buscar(coluna1);
          
          txtMatricula.setText(String.valueOf(objAluno.getMat_aluno()));
          txtNome.setText(objAluno.getNom_aluno());
          txtEmail.setText(objAluno.getEmail());
-         txtDtnas.setText(String.valueOf(objAluno.getDat_nasc()));
+         //txtDtnas.setText(String.valueOf(objAluno.getDat_nasc()));
          objComboCurso.SetaComboBox(String.valueOf(objAluno.getCod_curso()));
     }//GEN-LAST:event_jTableAlunosMouseClicked
 

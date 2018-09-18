@@ -103,7 +103,11 @@ public class AlunoController {
             @Override
             public Component getTableCellRendererComponent (JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                 super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                if (row % 2 == 0) {
+                if (isSelected) {
+                    setBackground(Color.GREEN);
+                    //setForeground(Color.BLUE);
+                }
+                else if (row % 2 == 0) {
                     setBackground(Color.LIGHT_GRAY);
                 } else {
                     setBackground(Color.WHITE);
@@ -114,30 +118,32 @@ public class AlunoController {
         //return (true);
     }
     
-    public Aluno buscar(String id)
-    {
+    public Aluno buscar(String id){
+        
         try {
             ConnectionFactory.abreConexao();
             ResultSet rs = null;
 
             String SQL = "";
-            SQL = " SELECT a.mat_alu, a.nom_alu, c.nom_curso, a.email, a.dat_nasc ";
-            SQL += " FROM alunos a, cursos c ";
-            SQL += " WHERE a.cod_curso = c.cod_curso ";
+            SQL = " SELECT mat_alu, nom_alu, email, cod_curso, dat_nasc";
+            SQL += " FROM alunos";
+            SQL += " WHERE mat_alu = '" + id + "'";
             //stm.executeQuery(SQL);
 
             try{
-                System.out.println("Vai Executar Conexão em buscar alunos");
+                System.out.println("Vai Executar Conexão em buscar visitante");
                 rs = ConnectionFactory.stmt.executeQuery(SQL);
-                System.out.println("Executou Conexão em buscar alunos");
-
-                objAluno= new Aluno();
+                System.out.println("Executou Conexão em buscar aluno");
                 
+               objAluno = new Aluno();
+               
                 if(rs.next() == true)
                 {
                     objAluno.setMat_aluno(rs.getInt(1));
                     objAluno.setNom_aluno(rs.getString(2));
                     objAluno.setEmail(rs.getString(3));
+                    objAluno.setCod_curso(rs.getInt(4));
+                    //objAluno.setDat_nasc(rs.getDate(5));
                 }
             }
 

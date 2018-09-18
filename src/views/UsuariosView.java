@@ -13,7 +13,7 @@ import tools.CaixaDeDialogo;
  *
  * @author luis_
  */
-public class ProfessoresView extends javax.swing.JFrame {
+public class UsuariosView extends javax.swing.JFrame {
     
     Usuario objUsuario = new Usuario();
     UsuarioController uc = new UsuarioController(null, null);
@@ -22,7 +22,7 @@ public class ProfessoresView extends javax.swing.JFrame {
     /**
      * Creates new form ProfessoresView
      */
-    public ProfessoresView() {
+    public UsuariosView() {
         initComponents();    
         
         
@@ -55,7 +55,6 @@ public class ProfessoresView extends javax.swing.JFrame {
         jTableListaUsuarios = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 600));
 
         txtNomeUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -214,20 +213,21 @@ public class ProfessoresView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ProfessoresView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsuariosView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ProfessoresView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsuariosView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ProfessoresView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsuariosView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ProfessoresView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsuariosView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ProfessoresView().setVisible(true);
+                new UsuariosView().setVisible(true);
             }
         });
     }

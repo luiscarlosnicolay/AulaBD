@@ -36,13 +36,14 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemAlunos = new javax.swing.JMenuItem();
-        jMenuItemProfessores = new javax.swing.JMenuItem();
+        jMenuItemUsuarios = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Principal");
 
+        btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sign-error.png"))); // NOI18N
         btnSair.setText("Sair");
         btnSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -50,8 +51,10 @@ public class PrincipalView extends javax.swing.JFrame {
             }
         });
 
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/notepad.png"))); // NOI18N
         jMenu1.setText("Cadastros");
 
+        jMenuItemAlunos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user-male-alt.png"))); // NOI18N
         jMenuItemAlunos.setText("Alunos");
         jMenuItemAlunos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -60,13 +63,14 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItemAlunos);
 
-        jMenuItemProfessores.setText("Professores");
-        jMenuItemProfessores.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user-id.png"))); // NOI18N
+        jMenuItemUsuarios.setText("Usuários");
+        jMenuItemUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemProfessoresActionPerformed(evt);
+                jMenuItemUsuariosActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItemProfessores);
+        jMenu1.add(jMenuItemUsuarios);
 
         jMenuBar1.add(jMenu1);
 
@@ -77,14 +81,14 @@ public class PrincipalView extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(539, Short.MAX_VALUE)
+                .addContainerGap(511, Short.MAX_VALUE)
                 .addComponent(btnSair)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(345, Short.MAX_VALUE)
+                .addContainerGap(330, Short.MAX_VALUE)
                 .addComponent(btnSair)
                 .addContainerGap())
         );
@@ -104,11 +108,11 @@ public class PrincipalView extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnSairActionPerformed
 
-    private void jMenuItemProfessoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemProfessoresActionPerformed
+    private void jMenuItemUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemUsuariosActionPerformed
         // TODO add your handling code here:
-        ProfessoresView pv = new ProfessoresView();
+        UsuariosView pv = new UsuariosView();
         pv.setVisible(true);
-    }//GEN-LAST:event_jMenuItemProfessoresActionPerformed
+    }//GEN-LAST:event_jMenuItemUsuariosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -154,6 +158,6 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItemAlunos;
-    private javax.swing.JMenuItem jMenuItemProfessores;
+    private javax.swing.JMenuItem jMenuItemUsuarios;
     // End of variables declaration//GEN-END:variables
 }
