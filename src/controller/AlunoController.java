@@ -127,9 +127,9 @@ public class AlunoController {
             //stm.executeQuery(SQL);
 
             try{
-                System.out.println("Vai Executar Conexão em buscar visitante");
+                System.out.println("Vai Executar Conexão em buscar alunos");
                 rs = ConnectionFactory.stmt.executeQuery(SQL);
-                System.out.println("Executou Conexão em buscar visitante");
+                System.out.println("Executou Conexão em buscar alunos");
 
                 objAluno= new Aluno();
                 
@@ -152,7 +152,7 @@ public class AlunoController {
             return null;
         }
         
-        System.out.println ("Executou buscar visitante com sucesso");
+        System.out.println ("Executou buscar aluno com sucesso");
         return objAluno;
     }
 }
