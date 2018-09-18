@@ -7,6 +7,7 @@ package views;
 
 import controller.AlunoController;
 import java.sql.SQLException;
+import models.Aluno;
 import tools.Combos;
 
 /**
@@ -202,8 +203,14 @@ public class AlunoView extends javax.swing.JFrame {
    // Primeira coluna da linha
    String coluna1 = jTableAlunos.getModel().getValueAt(linhaSelecionada, 0).toString();
    //basta agora chamar o método buscar, passando o COLUNA1 como parâmetro de consulta
-   AlunoController alunoCon = new AlunoController(null, jTableAlunos);
-        alunoCon.buscar(coluna1);
+         Aluno objAluno = new Aluno();
+         AlunoController alunoCon = new AlunoController(objAluno, null);
+         objAluno = alunoCon.buscar(coluna1);
+         
+         txtMatricula.setText(String.valueOf(objAluno.getMat_aluno()));
+         txtNome.setText(objAluno.getNom_aluno());
+         txtEmail.setText(objAluno.getEmail());
+         objComboCurso.SetaComboBox(String.valueOf(objAluno.getCod_curso()));
     }//GEN-LAST:event_jTableAlunosMouseClicked
 
     /**
