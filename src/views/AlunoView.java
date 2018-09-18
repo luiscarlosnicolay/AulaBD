@@ -210,6 +210,7 @@ public class AlunoView extends javax.swing.JFrame {
          txtMatricula.setText(String.valueOf(objAluno.getMat_aluno()));
          txtNome.setText(objAluno.getNom_aluno());
          txtEmail.setText(objAluno.getEmail());
+         txtDtnas.setText(objAluno.getDat_nasc());
          objComboCurso.SetaComboBox(String.valueOf(objAluno.getCod_curso()));
     }//GEN-LAST:event_jTableAlunosMouseClicked
 
