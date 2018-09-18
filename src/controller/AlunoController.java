@@ -121,9 +121,9 @@ public class AlunoController {
             ResultSet rs = null;
 
             String SQL = "";
-            SQL = " SELECT a.mat_alu, c.nom_curso, a.nom_alu ";
+            SQL = " SELECT a.mat_alu, a.nom_alu, c.nom_curso, a.email, a.dat_nasc ";
             SQL += " FROM alunos a, cursos c ";
-            SQL += " WHERE a.cod_curso = c.cod_curso " + id + "'";
+            SQL += " WHERE a.cod_curso = c.cod_curso ";
             //stm.executeQuery(SQL);
 
             try{
