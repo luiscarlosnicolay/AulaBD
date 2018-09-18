@@ -207,7 +207,7 @@ public class AlunoView extends javax.swing.JFrame {
    //basta agora chamar o método buscar, passando o COLUNA1 como parâmetro de consulta
         objAluno = new Aluno();
          
-        objAluno = alunoCon.buscar(coluna1);
+        objAluno = alunoCon.buscarAlunos(coluna1);
          
          txtMatricula.setText(String.valueOf(objAluno.getMat_aluno()));
          txtNome.setText(objAluno.getNom_aluno());

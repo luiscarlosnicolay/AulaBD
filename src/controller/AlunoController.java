@@ -118,7 +118,7 @@ public class AlunoController {
         //return (true);
     }
     
-    public Aluno buscar(String id){
+    public Aluno buscarAlunos(String id){
         
         try {
             ConnectionFactory.abreConexao();

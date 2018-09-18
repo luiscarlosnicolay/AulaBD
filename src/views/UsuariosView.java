@@ -115,6 +115,11 @@ public class UsuariosView extends javax.swing.JFrame {
 
         btnExcluirUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sign-delete.png"))); // NOI18N
         btnExcluirUsuario.setText("Excluir");
+        btnExcluirUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirUsuarioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -204,7 +209,7 @@ public class UsuariosView extends javax.swing.JFrame {
         objUsuario.setLogin(txtLoginUsuario.getText());
         String senha = new String(this.txtSenhaUsuario.getPassword());
         objUsuario.setSenha(senha);
-        uc.incluir(objUsuario);
+        uc.incluirUsuario(objUsuario);
         CaixaDeDialogo.obterinstancia().exibirMensagem("Usuário cadastrado com Sucesso", "Cadastro", 'i');
         
         uc.PreencheUsuarios();
@@ -224,17 +229,22 @@ public class UsuariosView extends javax.swing.JFrame {
         //pega a linha selecionada
         int linhaSelecionada = jTableListaUsuarios.getSelectedRow();
         // Primeira coluna da linha
-        String coluna1 = jTableListaUsuarios.getModel().getValueAt(linhaSelecionada, 0).toString();
+        String coluna1 = jTableListaUsuarios.getModel().getValueAt(linhaSelecionada, 1).toString();
         //basta agora chamar o método buscar, passando o COLUNA1 como parâmetro de consulta
         objUsuario = new Usuario();
          
-        objUsuario = uc.buscar(coluna1);
+        objUsuario = uc.buscarUsuarios(coluna1);
          
          txtLoginUsuario.setText(objUsuario.getLogin());
          txtSenhaUsuario.setText(objUsuario.getSenha());
          txtNomeUsuario.setText(objUsuario.getNome());
 
     }//GEN-LAST:event_jTableListaUsuariosMouseClicked
+
+    private void btnExcluirUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirUsuarioActionPerformed
+        // TODO add your handling code here:
+        uc.excluirUsuario(objUsuario);
+    }//GEN-LAST:event_btnExcluirUsuarioActionPerformed
 
     /**
      * @param args the command line arguments

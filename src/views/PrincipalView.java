@@ -18,7 +18,7 @@ public class PrincipalView extends javax.swing.JFrame {
      */
     public PrincipalView() {
         initComponents();
-        this.setExtendedState(MAXIMIZED_BOTH);
+        //this.setExtendedState(MAXIMIZED_BOTH);
         this.getContentPane().setBackground(Color.WHITE);
     }
 
@@ -50,6 +50,8 @@ public class PrincipalView extends javax.swing.JFrame {
                 btnSairActionPerformed(evt);
             }
         });
+
+        jMenuBar1.setMaximumSize(new java.awt.Dimension(800, 600));
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/notepad.png"))); // NOI18N
         jMenu1.setText("Cadastros");

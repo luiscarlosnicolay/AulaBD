@@ -34,7 +34,7 @@ public class UsuarioController {
         this.jTableListaUsuarios = jTableListaUsuarios;
     }
     
-    public boolean incluir(Usuario objUsuario){      
+    public boolean incluirUsuario(Usuario objUsuario){      
         
         
         ConnectionFactory.abreConexao();
@@ -46,6 +46,29 @@ public class UsuarioController {
             stmt.setString(1, objUsuario.getLogin());
             stmt.setString(2, objUsuario.getSenha());
             stmt.setString(3, objUsuario.getNome());
+            
+            stmt.executeUpdate();
+            
+            return true;
+            
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+        
+    }
+    
+    public boolean excluirUsuario(Usuario objUsuario){      
+        
+        
+        ConnectionFactory.abreConexao();
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        
+        try {
+            stmt = con.prepareStatement("DELETE FROM usuarios WHERE login_usuario = ? ");
             
             stmt.executeUpdate();
             
@@ -137,7 +160,7 @@ public class UsuarioController {
         });
     }
     
-    public Usuario buscar(String id){
+    public Usuario buscarUsuarios(String id){
         
         try {
             ConnectionFactory.abreConexao();
