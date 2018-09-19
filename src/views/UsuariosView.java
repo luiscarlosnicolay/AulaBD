@@ -238,12 +238,23 @@ public class UsuariosView extends javax.swing.JFrame {
          txtLoginUsuario.setText(objUsuario.getLogin());
          txtSenhaUsuario.setText(objUsuario.getSenha());
          txtNomeUsuario.setText(objUsuario.getNome());
+         
 
     }//GEN-LAST:event_jTableListaUsuariosMouseClicked
 
     private void btnExcluirUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirUsuarioActionPerformed
         // TODO add your handling code here:
+        int linhaSelecionada = jTableListaUsuarios.getSelectedRow();
+        // Primeira coluna da linha
+        String coluna1 = jTableListaUsuarios.getModel().getValueAt(linhaSelecionada, 1).toString();
+        //basta agora chamar o método buscar, passando o COLUNA1 como parâmetro de consulta
+        objUsuario = new Usuario();
+         
+        objUsuario = uc.buscarUsuarios(coluna1);
+         
         uc.excluirUsuario(objUsuario);
+        
+        uc.PreencheUsuarios();
     }//GEN-LAST:event_btnExcluirUsuarioActionPerformed
 
     /**

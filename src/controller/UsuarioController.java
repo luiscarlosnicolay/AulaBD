@@ -69,6 +69,7 @@ public class UsuarioController {
         
         try {
             stmt = con.prepareStatement("DELETE FROM usuarios WHERE login_usuario = ? ");
+            stmt.setString(1, objUsuario.getLogin());
             
             stmt.executeUpdate();
             
