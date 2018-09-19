@@ -161,4 +161,56 @@ public class AlunoController {
         System.out.println ("Executou buscar aluno com sucesso");
         return objAluno;
     }
+    
+    public boolean incluirAluno(Aluno objAluno){      
+        
+        
+        ConnectionFactory.abreConexao();
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        
+        try {
+            stmt = con.prepareStatement("INSERT INTO alunos (mat_alu, nom_aluno, email, cod_curso)VALUES(?,?,?,?)");
+            stmt.setInt(1, objAluno.getMat_aluno());
+            stmt.setString(2, objAluno.getNom_aluno());
+            stmt.setString(3, objAluno.getEmail());
+            stmt.setInt(4, objAluno.getCod_curso());
+            
+            stmt.executeUpdate();
+            
+            return true;
+            
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+        
+    }
+    
+    public boolean alterarAluno(){
+ 
+        ConnectionFactory.abreConexao();
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+ 
+        try {
+            stmt = con.prepareStatement("UPDATE alunos SET nome=?, cod_curso=?, email=? WHERE mat_alu=?");
+            stmt.setString(1, objAluno.getNom_aluno());
+            stmt.setInt(2, objAluno.getCod_curso());
+            stmt.setString(3, objAluno.getEmail());
+ 
+            stmt.executeUpdate();
+ 
+            return true;
+ 
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+ 
+    }
 }
