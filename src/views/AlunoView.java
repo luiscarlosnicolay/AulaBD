@@ -68,7 +68,7 @@ public class AlunoView extends javax.swing.JFrame {
         btnIncluir = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
         btnExcluirAluno = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnLimpar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -152,7 +152,12 @@ public class AlunoView extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("jButton4");
+        btnLimpar.setText("Limpar");
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -187,7 +192,7 @@ public class AlunoView extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnExcluirAluno)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton4)
+                        .addComponent(btnLimpar)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -217,7 +222,7 @@ public class AlunoView extends javax.swing.JFrame {
                     .addComponent(btnIncluir)
                     .addComponent(btnAlterar)
                     .addComponent(btnExcluirAluno)
-                    .addComponent(jButton4))
+                    .addComponent(btnLimpar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -266,25 +271,50 @@ public class AlunoView extends javax.swing.JFrame {
         
         AlunoController objAlunoCon = new AlunoController(objAluno, null);
         try{
-            if(objAlunoCon.incluirAluno() == true){
-                
+            if(objAlunoCon.incluirAluno(objAluno)== true){
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Aluno incluido");
+            }else{
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao incluir aluno");
             }
+        }catch (Exception ex) {
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Erro" + ex);
         }
     }//GEN-LAST:event_btnIncluirActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
+        guardarDados();
+        
+        AlunoController objAlunoCon = new AlunoController(objAluno, null);
+        if(objAlunoCon.alterarAluno() == true){
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Aluno alterado");
+        }else{
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao alterar aluno");
+        }
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnExcluirAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirAlunoActionPerformed
         // TODO add your handling code here:
-        String matricula = txtMatricula.getText();
+        /*String matricula = txtMatricula.getText();
         AlunoController objAlunoCon = new AlunoController(objAluno, null);
         try {
-            if (objAlunoCon.Excluir(matricula))
+            if (objAlunoCon.Excluir(matricula)){
+                
         }
+            }catch (Exception ex) {
+                
+            }*/ //validar
 
     }//GEN-LAST:event_btnExcluirAlunoActionPerformed
+
+    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
+        // TODO add your handling code here:
+        txtDtnas.setText("");
+        txtNome.setText("");
+        txtEmail.setText("");
+        txtMatricula.setText("");
+        txtNome.grabFocus();
+    }//GEN-LAST:event_btnLimparActionPerformed
     
     private void preencheCampos(){
         try{
@@ -342,7 +372,7 @@ public class AlunoView extends javax.swing.JFrame {
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnExcluirAluno;
     private javax.swing.JButton btnIncluir;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btnLimpar;
     private javax.swing.JComboBox<String> jComboBoxCurso;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

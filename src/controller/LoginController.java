@@ -29,7 +29,7 @@ public class LoginController {
         ResultSet rs = null;
 
         StringBuilder comandoSQL = new StringBuilder();
-        comandoSQL.append(" SELECT login_usuario, nome");
+        comandoSQL.append(" SELECT login_usuario, nome_usuario");
         comandoSQL.append(" FROM usuarios");
         comandoSQL.append(" WHERE login_usuario = '"+ usuario +"'");
         comandoSQL.append(" AND senha_usuario = '"+ senha +"'");
